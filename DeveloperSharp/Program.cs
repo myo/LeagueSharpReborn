@@ -116,32 +116,34 @@ namespace DeveloperSharp
                 var X = Drawing.WorldToScreen(obj.Position).X;
                 var Y = Drawing.WorldToScreen(obj.Position).Y;
                 Drawing.DrawText(X, Y, Config.Item("color").GetValue<Color>(), (obj is Obj_AI_Hero) ? ((Obj_AI_Hero)obj).CharData.BaseSkinName : (obj is Obj_AI_Minion) ? (obj as Obj_AI_Minion).CharData.BaseSkinName : (obj is Obj_AI_Turret) ? (obj as Obj_AI_Turret).CharData.BaseSkinName : obj.Name);
-                Drawing.DrawText(X, Y + 10, Config.Item("color").GetValue<Color>(), obj.Type.ToString());
-                Drawing.DrawText(X, Y + 20, Config.Item("color").GetValue<Color>(), "NetworkID: " + obj.NetworkId);
-                Drawing.DrawText(X, Y + 30, Config.Item("color").GetValue<Color>(), obj.Position.ToString());
+                Drawing.DrawText(X, Y + 12, Config.Item("color").GetValue<Color>(), obj.Type.ToString());
+                Drawing.DrawText(X, Y + 22, Config.Item("color").GetValue<Color>(), "NetworkID: " + obj.NetworkId);
+                Drawing.DrawText(X, Y + 32, Config.Item("color").GetValue<Color>(), obj.Position.ToString());
                 if (obj is Obj_AI_Base)
                 {
                     var aiobj = obj as Obj_AI_Base;
-                    Drawing.DrawText(X, Y + 40, Config.Item("color").GetValue<Color>(), "Health: " + aiobj.Health + "/" + aiobj.MaxHealth + "(" + aiobj.HealthPercent + "%)");
+                    Drawing.DrawText(X, Y + 42, Config.Item("color").GetValue<Color>(), "Health: " + aiobj.Health + "/" + aiobj.MaxHealth + "(" + aiobj.HealthPercent + "%)");
                 }
                 if (obj is Obj_AI_Hero)
                 {
                     var hero = obj as Obj_AI_Hero;
-                    Drawing.DrawText(X, Y + 50, Config.Item("color").GetValue<Color>(), "Spells:");
-                    Drawing.DrawText(X, Y + 60, Config.Item("color").GetValue<Color>(), "(Q): " + hero.Spellbook.Spells[0].Name);
-                    Drawing.DrawText(X, Y + 70, Config.Item("color").GetValue<Color>(), "(W): " + hero.Spellbook.Spells[1].Name);
-                    Drawing.DrawText(X, Y + 80, Config.Item("color").GetValue<Color>(), "(E): " + hero.Spellbook.Spells[2].Name);
-                    Drawing.DrawText(X, Y + 90, Config.Item("color").GetValue<Color>(), "(R): " + hero.Spellbook.Spells[3].Name);
-                    Drawing.DrawText(X, Y + 100, Config.Item("color").GetValue<Color>(), "(D): " + hero.Spellbook.Spells[4].Name);
-                    Drawing.DrawText(X, Y + 110, Config.Item("color").GetValue<Color>(), "(F): " + hero.Spellbook.Spells[5].Name);
+                    Drawing.DrawText(X, Y + 62, Config.Item("color").GetValue<Color>(), "Spells:");
+                    Drawing.DrawText(X, Y + 72, Config.Item("color").GetValue<Color>(), "-------");
+                    Drawing.DrawText(X, Y + 82, Config.Item("color").GetValue<Color>(), "(Q): " + hero.Spellbook.Spells[0].Name);
+                    Drawing.DrawText(X, Y + 92, Config.Item("color").GetValue<Color>(), "(W): " + hero.Spellbook.Spells[1].Name);
+                    Drawing.DrawText(X, Y + 102, Config.Item("color").GetValue<Color>(), "(E): " + hero.Spellbook.Spells[2].Name);
+                    Drawing.DrawText(X, Y + 112, Config.Item("color").GetValue<Color>(), "(R): " + hero.Spellbook.Spells[3].Name);
+                    Drawing.DrawText(X, Y + 122, Config.Item("color").GetValue<Color>(), "(D): " + hero.Spellbook.Spells[4].Name);
+                    Drawing.DrawText(X, Y + 132, Config.Item("color").GetValue<Color>(), "(F): " + hero.Spellbook.Spells[5].Name);
                     var buffs = hero.Buffs;
                     if (buffs.Any())
                     {
-                        Drawing.DrawText(X, Y + 120, Config.Item("color").GetValue<Color>(), "Buffs:");
+                        Drawing.DrawText(X, Y + 152, Config.Item("color").GetValue<Color>(), "Buffs:");
+                        Drawing.DrawText(X, Y + 162, Config.Item("color").GetValue<Color>(), "------");
                     }
                     for (var i = 0; i < buffs.Count()*10; i += 10)
                     {
-                        Drawing.DrawText(X, (Y + 130 + i), Config.Item("color").GetValue<Color>(), buffs[i/10].Count + "x " + buffs[i/10].Name);
+                        Drawing.DrawText(X, (Y + 172 + i), Config.Item("color").GetValue<Color>(), buffs[i/10].Count + "x " + buffs[i/10].Name);
                     }
 
                 }
