@@ -105,7 +105,7 @@ namespace DeveloperSharp
                 for (var i = 0; i < masteries.Length; i++)
                 {
                     var mastery = masteries[i];
-                    var text = "You have " + mastery.Points + " points in mastery #" + mastery.Id;
+                    var text = "You have " + mastery.Points + " points in mastery #" + mastery.Id + " from page " + mastery.Page;
                     Drawing.DrawText(Drawing.Width/2-text.Length, Drawing.Height/2-masteries.Length + i * 10, Config.Item("color").GetValue<Color>(), text);
                 }
                 return;
