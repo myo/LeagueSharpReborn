@@ -71,6 +71,7 @@ namespace PRADA_Vayne.MyInitializer
                     new MenuItem("QWaveClearMana", "Min Mana for Q Wave clear").SetValue(new Slider(75)));
                 Program.LaneClearMenu.AddItem(
                     new MenuItem("EJungleMobs", "Use E on Jungle Mobs").SetValue(true)).SetFontStyle(FontStyle.Bold, SharpDX.Color.Red);
+                Program.SkinhackMenu.AddItem(new MenuItem("shkenabled", "Enabled").SetValue(true));
                 Program.SkinhackMenu.AddItem(
                 new MenuItem("skin", "Skin: ").SetValue(
                     new StringList(new[] { "Classic", "Vindicator", "Aristocrat", "Dragonslayer", "Heartseeker", "SKT T1", "Arclight", "Dragonslayer Green", "Dragonslayer Red", "Dragonslayer Azure", "Soulstealer" }, 10))).SetFontStyle(FontStyle.Bold, SharpDX.Color.Gold).ValueChanged +=

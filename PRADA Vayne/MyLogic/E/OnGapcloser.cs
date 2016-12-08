@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LeagueSharp;
 using LeagueSharp.Common;
 using PRADA_Vayne.MyUtils;
 
@@ -16,7 +17,7 @@ namespace PRADA_Vayne.MyLogic.E
                 .Item("antigc" + gapcloser.Sender.ChampionName)
                 .GetValue<bool>())
             {
-                if (Heroes.Player.Distance(gapcloser.End) < 425)
+                if (ObjectManager.Player.Distance(gapcloser.End) < 425)
                 {
                     Program.E.Cast(gapcloser.Sender);
                 }

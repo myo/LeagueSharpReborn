@@ -33,7 +33,11 @@ namespace PRADA_Vayne.MyLogic.Others
 
         public static void RefreshSkin()
         {
-            ObjectManager.Player.SetSkin(ObjectManager.Player.CharData.BaseSkinName, Program.SkinhackMenu.Item("skin").GetValue<StringList>().SelectedIndex);
+            if (Program.SkinhackMenu.Item("shkenabled").GetValue<bool>())
+            {
+                ObjectManager.Player.SetSkin(ObjectManager.Player.CharData.BaseSkinName,
+                    Program.SkinhackMenu.Item("skin").GetValue<StringList>().SelectedIndex);
+            }
         }
     }
 }
