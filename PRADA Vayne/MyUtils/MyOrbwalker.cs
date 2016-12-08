@@ -1129,7 +1129,7 @@ namespace PRADA_Vayne.MyUtils
                 {
                     var enemyWith2WStacks =
                         ObjectManager.Get<Obj_AI_Hero>().FirstOrDefault(
-                            h => h.IsEnemy && h.VayneWStacks() >= 2 && h.Distance(ObjectManager.Player, true) < 615 * 615);
+                            h => h.IsEnemy && h.Distance(ObjectManager.Player, true) < 615 * 615 && h.VayneWStacks() >= 2);
                     if (enemyWith2WStacks != null)
                     {
                         return enemyWith2WStacks;
