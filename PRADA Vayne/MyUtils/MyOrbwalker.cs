@@ -760,9 +760,9 @@ namespace PRADA_Vayne.MyUtils
                 {
                     return;
                 }
-                var spellName = Spell.SData.Name;
                 if (unit.IsMe)
                 {
+                    var spellName = Spell.SData.Name;
                     if (Spell.Target != null)
                     {
                         PushLastTargets(Spell.Target.NetworkId);
@@ -771,33 +771,35 @@ namespace PRADA_Vayne.MyUtils
                     {
                         ResetAutoAttackTimer();
                     }
-                }
 
-                if (!IsAutoAttack(spellName))
-                {
-                    return;
-                }
 
-                if (unit.IsMe
-                    && (Spell.Target is Obj_AI_Base || Spell.Target is Obj_BarracksDampener || Spell.Target is Obj_HQ))
-                {
-                    LastAATick = LeagueSharp.Common.Utils.GameTimeTickCount - Game.Ping / 2;
-                    _missileLaunched = false;
-                    LastMoveCommandT = 0;
-                    _autoattackCounter++;
-
-                    if (Spell.Target is Obj_AI_Base)
+                    if (!IsAutoAttack(spellName))
                     {
-                        var target = (Obj_AI_Base)Spell.Target;
-                        if (target.IsValid)
+                        return;
+                    }
+
+                    if (unit.IsMe
+                        &&
+                        (Spell.Target is Obj_AI_Base || Spell.Target is Obj_BarracksDampener || Spell.Target is Obj_HQ))
+                    {
+                        LastAATick = LeagueSharp.Common.Utils.GameTimeTickCount - Game.Ping/2;
+                        _missileLaunched = false;
+                        LastMoveCommandT = 0;
+                        _autoattackCounter++;
+
+                        if (Spell.Target is Obj_AI_Base)
                         {
-                            FireOnTargetSwitch(target);
-                            _lastTarget = target;
+                            var target = (Obj_AI_Base) Spell.Target;
+                            if (target.IsValid)
+                            {
+                                FireOnTargetSwitch(target);
+                                _lastTarget = target;
+                            }
                         }
                     }
-                }
 
-                FireOnAttack(unit, _lastTarget);
+                    FireOnAttack(unit, _lastTarget);
+                }
             }
             catch (Exception e)
             {
