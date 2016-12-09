@@ -1064,7 +1064,7 @@ namespace PRADA_Vayne.MyUtils
 
                     if (_config.Item("LastHit").GetValue<KeyBind>().Active)
                     {
-                        return OrbwalkingMode.LastHit;
+                        return OrbwalkingMode.Mixed;
                     }
 
                     if (_config.Item(this.CustomModeName) != null
