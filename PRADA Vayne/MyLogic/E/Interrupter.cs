@@ -12,7 +12,7 @@ namespace PRADA_Vayne.MyLogic.E
     {
         public static void OnPossibleToInterrupt(Obj_AI_Hero sender, Interrupter2.InterruptableTargetEventArgs args)
         {
-            if (args.DangerLevel == Interrupter2.DangerLevel.High && Program.E.IsReady() && Program.E.IsInRange(sender))
+            if (args.DangerLevel == Interrupter2.DangerLevel.High && Program.E.IsReady() && Program.E.IsInRange(sender) && (sender.CharData.BaseSkinName != "Shyvana"))
             {
                 Program.E.Cast(sender);
             }

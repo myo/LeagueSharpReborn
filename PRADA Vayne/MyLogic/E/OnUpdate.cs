@@ -19,19 +19,22 @@ namespace PRADA_Vayne.MyLogic.E
                 {
                     foreach (var hero in Heroes.EnemyHeroes.Where(h => h.Distance(Heroes.Player) < 550))
                     {
-                        var prediction = Program.E.GetPrediction(hero);
-                        for (var i = 40; i < 425; i += 125)
+                        if (hero != null)
                         {
-                            var flags = NavMesh.GetCollisionFlags(
-                                prediction.UnitPosition.To2D()
-                                    .Extend(
-                                        Heroes.Player.ServerPosition.To2D(),
-                                        -i)
-                                    .To3D());
-                            if (flags.HasFlag(CollisionFlags.Wall) || flags.HasFlag(CollisionFlags.Building))
+                            var prediction = Program.E.GetPrediction(hero);
+                            for (var i = 40; i < 425; i += 125)
                             {
-                                Program.E.Cast(hero);
-                                return;
+                                var flags = NavMesh.GetCollisionFlags(
+                                    prediction.UnitPosition.To2D()
+                                        .Extend(
+                                            Heroes.Player.ServerPosition.To2D(),
+                                            -i)
+                                        .To3D());
+                                if (flags.HasFlag(CollisionFlags.Wall) || flags.HasFlag(CollisionFlags.Building))
+                                {
+                                    Program.E.Cast(hero);
+                                    return;
+                                }
                             }
                         }
                     }
@@ -40,11 +43,21 @@ namespace PRADA_Vayne.MyLogic.E
                 {
                     foreach (var enemy in Heroes.EnemyHeroes.Where(e=>e.IsValidTarget(550)))
                     {
-                        if (enemy.IsCondemnable())
+                        if (enemy != null && enemy.IsCondemnable())
                         {
                             Program.E.Cast(enemy);
                         }
                     }
+                }
+                var kindredUltedDyingTarget =
+                    ObjectManager.Get<Obj_AI_Hero>()
+                        .FirstOrDefault(
+                            h =>
+                                h.IsValidTarget(550) && h.HasBuff("KindredRNoDeathBuff") &&
+                                h.Health < ObjectManager.Player.GetAutoAttackDamage(h));
+                if (kindredUltedDyingTarget != null)
+                {
+                    Program.E.Cast(kindredUltedDyingTarget);
                 }
             }
         }

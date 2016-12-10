@@ -28,7 +28,28 @@ namespace PRADA_Vayne.MyUtils
             var pD = Program.ComboMenu.Item("EPushDist").GetValue<Slider>().Value;
             var mode = Program.ComboMenu.Item("EMode").GetValue<StringList>().SelectedValue;
 
-
+            var j4 =
+                ObjectManager.Get<Obj_AI_Hero>()
+                    .FirstOrDefault(
+                        h =>
+                            h.IsEnemy && h.CharData.BaseSkinName == "JarvanIV" && h.Distance(ObjectManager.Player) < 800);
+            if (j4 != null)
+            {
+                if (
+                    ObjectManager.Get<Obj_AI_Minion>()
+                        .Any(m => m.CharData.BaseSkinName == "jarvanivwall" && m.Distance(pP.Extend(p, 425)) < 100))
+                {
+                    return true;
+                }
+                if (!j4.IsDead && ObjectManager.Get<Obj_AI_Minion>()
+                    .Any(
+                        m =>
+                            m.CharData.BaseSkinName == "jarvanivwall" &&
+                            m.Distance(j4.ServerPosition.Extend(p, 425)) < 100))
+                {
+                    Program.E.Cast(j4);
+                }
+            }
             if (mode == "PRADASMART" && (p.Extend(pP, -pD).IsCollisionable() || p.Extend(pP, -pD / 2f).IsCollisionable() ||
                  p.Extend(pP, -pD / 3f).IsCollisionable()))
             {
@@ -255,9 +276,9 @@ namespace PRADA_Vayne.MyUtils
             {
                 return pList.Count > 1 ? pList.OrderBy(el => el.Distance(cursorPos)).FirstOrDefault() : Vector3.Zero;
             }
-            if (!cursorPos.IsDangerousPosition())
+            if (Program.ComboMenu.Item("QOrderBy").GetValue<StringList>().SelectedValue == "CLOSETOTARGET")
             {
-                return pList.Count > 1 ? pList.OrderBy(el => el.Distance(cursorPos)).FirstOrDefault() : Vector3.Zero;
+                return pList.Count > 1 ? pList.OrderBy(el => el.Distance(targetPosition)).FirstOrDefault() : Vector3.Zero;
             }
             return pList.Count > 1 ? pList.OrderByDescending(el => el.Distance(cursorPos)).FirstOrDefault() : Vector3.Zero;
         }

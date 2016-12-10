@@ -26,7 +26,7 @@ namespace PRADA_Vayne.MyInitializer
             #region E
 
             GameObject.OnCreate += MyLogic.E.AntiAssasins.OnCreateGameObject;
-            AntiGapcloser.OnEnemyGapcloser += MyLogic.E.Events.OnGapcloser;
+            Obj_AI_Base.OnProcessSpellCast += MyLogic.E.Events.OnProcessSpellCast;
             Game.OnUpdate += MyLogic.E.Events.OnUpdate;
             Interrupter2.OnInterruptableTarget += MyLogic.E.Events.OnPossibleToInterrupt;
             Game.OnUpdate += MyLogic.E.Events.JungleUsage;

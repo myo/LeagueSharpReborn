@@ -36,6 +36,16 @@ namespace PRADA_Vayne.MyLogic.Q
                             Tumble.Cast(tumblePosition);
                         }
                     }
+                    var closestJ4Wall = ObjectManager.Get<Obj_AI_Minion>()
+                        .FirstOrDefault(
+                            m =>
+                                m.CharData.BaseSkinName == "jarvanivwall" &&
+                                ObjectManager.Player.ServerPosition.Distance(m.Position) < 100);
+                    if (closestJ4Wall != null)
+                    {
+                        args.Process = false;
+                        Program.Q.Cast(ObjectManager.Player.ServerPosition.Extend(closestJ4Wall.Position, 300));
+                    }
                 }
             }
         }

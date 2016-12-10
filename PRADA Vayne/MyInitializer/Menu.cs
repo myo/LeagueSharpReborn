@@ -40,6 +40,9 @@ namespace PRADA_Vayne.MyInitializer
                         new StringList(new[] {"PRADA", "TO MOUSE"}))).SetFontStyle(FontStyle.Bold, SharpDX.Color.Red);
                 Program.ComboMenu.AddItem(
                     new MenuItem("QMinDist", "Min dist from enemies").SetValue(new Slider(375, 325, 525)));
+                Program.ComboMenu.AddItem(
+                    new MenuItem("QOrderBy", "Q to position").SetValue(
+                        new StringList(new[] {"CLOSETOMOUSE", "CLOSETOTARGET"})));
                 Program.ComboMenu.AddItem(new MenuItem("QChecks", "Q Safety Checks").SetValue(true));
                 Program.ComboMenu.AddItem(new MenuItem("EQ", "Q After E").SetValue(false));
                 Program.ComboMenu.AddItem(new MenuItem("QWall", "Enable Wall Tumble?").SetValue(true));
