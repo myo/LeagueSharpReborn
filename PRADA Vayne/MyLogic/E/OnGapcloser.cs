@@ -86,6 +86,12 @@ namespace PRADA_Vayne.MyLogic.E
                         }
                     }
                 }
+                if (
+                    sender.CharData.BaseSkinName == "Yasuo" && args.Target != null && args.Target.IsMe && args.Slot ==
+                        SpellSlot.E)
+                {
+                    Program.E.Cast(sender);
+                }
             }
         }
     }
