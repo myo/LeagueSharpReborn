@@ -47,6 +47,10 @@ namespace PRADA_Vayne.MyLogic.E
                 {
                     Program.E.Cast(sender);
                 }
+                if (sender.CharData.BaseSkinName.ToLower().Contains("zhao") && args.Slot == SpellSlot.E)
+                {
+                    Program.E.Cast(sender);
+                }
             }
         }
     }

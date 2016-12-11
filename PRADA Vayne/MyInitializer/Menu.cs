@@ -45,7 +45,6 @@ namespace PRADA_Vayne.MyInitializer
                         new StringList(new[] {"CLOSETOMOUSE", "CLOSETOTARGET"})));
                 Program.ComboMenu.AddItem(new MenuItem("QChecks", "Q Safety Checks").SetValue(true));
                 Program.ComboMenu.AddItem(new MenuItem("EQ", "Q After E").SetValue(false));
-                Program.ComboMenu.AddItem(new MenuItem("QWall", "Enable Wall Tumble?").SetValue(true));
                 Program.ComboMenu.AddItem(new MenuItem("QR", "Q after Ult").SetValue(true));
                 Program.ComboMenu.AddItem(new MenuItem("FocusTwoW", "Focus 2 W Stacks").SetValue(true));
                 Program.ComboMenu.AddItem(new MenuItem("ECombo", "Auto Condemn").SetValue(true));
