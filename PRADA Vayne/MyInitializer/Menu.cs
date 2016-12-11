@@ -46,6 +46,7 @@ namespace PRADA_Vayne.MyInitializer
                 Program.ComboMenu.AddItem(new MenuItem("QChecks", "Q Safety Checks").SetValue(true));
                 Program.ComboMenu.AddItem(new MenuItem("EQ", "Q After E").SetValue(false));
                 Program.ComboMenu.AddItem(new MenuItem("QR", "Q after Ult").SetValue(true));
+                Program.ComboMenu.AddItem(new MenuItem("OnlyQinCombo", "Only Q in COMBO").SetValue(false));
                 Program.ComboMenu.AddItem(new MenuItem("FocusTwoW", "Focus 2 W Stacks").SetValue(true));
                 Program.ComboMenu.AddItem(new MenuItem("ECombo", "Auto Condemn").SetValue(true));
                 Program.ComboMenu.AddItem(

@@ -14,7 +14,7 @@ namespace PRADA_Vayne.MyLogic.Q
         public static void AfterAttack(AttackableUnit sender, AttackableUnit target)
         {
             if (!Program.Q.IsReady()) return;
-            if (sender.IsMe && target.IsValid<Obj_AI_Hero>())
+            if (sender.IsMe && target.IsValid<Obj_AI_Hero>() && (Program.Orbwalker.ActiveMode == MyOrbwalker.OrbwalkingMode.Combo || !Program.ComboMenu.Item("OnlyQinCombo").GetValue<bool>()))
             {
                 var tg = target as Obj_AI_Hero;
                 if (tg == null) return;
