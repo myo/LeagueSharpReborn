@@ -59,6 +59,33 @@ namespace PRADA_Vayne.MyLogic.E
                     Console.WriteLine("xin gc");
                     Program.E.Cast(sender);
                 }
+                if (sender.CharData.BaseSkinName == "Pantheon" && args.Slot == SpellSlot.W)
+                {
+                    Program.E.Cast(sender);
+                }
+
+                //INTERRUPTER
+                if (sender.CharData.BaseSkinName == "Katarina" && args.Slot == SpellSlot.R)
+                {
+                    Program.E.Cast(sender);
+                }
+                if (sender.CharData.BaseSkinName == "MasterYi" && args.Slot == SpellSlot.W)
+                {
+                    for (var i = 40; i < 425; i += 125)
+                    {
+                        var flags = NavMesh.GetCollisionFlags(
+                            sender.ServerPosition.To2D()
+                                .Extend(
+                                    Heroes.Player.ServerPosition.To2D(),
+                                    -i)
+                                .To3D());
+                        if (flags != null && flags.HasFlag(CollisionFlags.Wall) || flags.HasFlag(CollisionFlags.Building))
+                        {
+                            Program.E.Cast(sender);
+                            return;
+                        }
+                    }
+                }
             }
         }
     }
