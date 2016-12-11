@@ -23,7 +23,7 @@ namespace PRADA_Vayne.MyLogic.E
                 {
                     Program.E.Cast(sender);
                 }
-                if (sender.CharData.BaseSkinName == "Leona" && args.Slot == SpellSlot.E)
+                if ((sender.CharData.BaseSkinName == "Leona" || sender.CharData.BaseSkinName == "Graves") && args.Slot == SpellSlot.E)
                 {
                     Program.E.Cast(sender);
                 }
