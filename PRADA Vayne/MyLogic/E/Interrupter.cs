@@ -14,6 +14,7 @@ namespace PRADA_Vayne.MyLogic.E
         {
             if (args.DangerLevel == Interrupter2.DangerLevel.High && Program.E.IsReady() && Program.E.IsInRange(sender) && (sender.CharData.BaseSkinName != "Shyvana") && sender.CharData.BaseSkinName != "Vayne")
             {
+                Console.WriteLine("Interrupter");
                 Program.E.Cast(sender);
             }
         }

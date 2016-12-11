@@ -28,28 +28,6 @@ namespace PRADA_Vayne.MyUtils
             var pD = Program.ComboMenu.Item("EPushDist").GetValue<Slider>().Value;
             var mode = Program.ComboMenu.Item("EMode").GetValue<StringList>().SelectedValue;
 
-            var j4 =
-                ObjectManager.Get<Obj_AI_Hero>()
-                    .FirstOrDefault(
-                        h =>
-                            h.IsEnemy && h.CharData.BaseSkinName == "JarvanIV" && h.Distance(ObjectManager.Player) < 800);
-            if (j4 != null)
-            {
-                if (
-                    ObjectManager.Get<Obj_AI_Minion>()
-                        .Any(m => m.CharData.BaseSkinName == "jarvanivwall" && m.Distance(pP.Extend(p, 425)) < 100))
-                {
-                    return true;
-                }
-                if (!j4.IsDead && ObjectManager.Get<Obj_AI_Minion>()
-                    .Any(
-                        m =>
-                            m.CharData.BaseSkinName == "jarvanivwall" &&
-                            m.Distance(j4.ServerPosition.Extend(p, 425)) < 100))
-                {
-                    Program.E.Cast(j4);
-                }
-            }
             if (mode == "PRADASMART" && (p.Extend(pP, -pD).IsCollisionable() || p.Extend(pP, -pD / 2f).IsCollisionable() ||
                  p.Extend(pP, -pD / 3f).IsCollisionable()))
             {
@@ -243,6 +221,29 @@ namespace PRADA_Vayne.MyUtils
                 return true;
             }
 
+            var j4 =
+                ObjectManager.Get<Obj_AI_Hero>()
+                    .FirstOrDefault(
+                        h =>
+                            h.IsEnemy && h.CharData.BaseSkinName == "JarvanIV" && h.Distance(ObjectManager.Player) < 800);
+            if (j4 != null)
+            {
+                if (
+                    ObjectManager.Get<Obj_AI_Minion>()
+                        .Any(m => m.CharData.BaseSkinName == "jarvanivwall" && m.Distance(pP.Extend(p, 425)) < 100))
+                {
+                    return true;
+                }
+                if (!j4.IsDead && ObjectManager.Get<Obj_AI_Minion>()
+                    .Any(
+                        m =>
+                            m.CharData.BaseSkinName == "jarvanivwall" &&
+                            m.Distance(j4.ServerPosition.Extend(p, 425)) < 100))
+                {
+                    Program.E.Cast(j4);
+                }
+            }
+
             return false;
         }
 
@@ -265,11 +266,11 @@ namespace PRADA_Vayne.MyUtils
 
                 if (target.IsFacing(Heroes.Player))
                 {
-                    if (!v3.IsDangerousPosition() && v3.Distance(targetPosition) < 550) pList.Add(v3);
+                    if (!v3.IsDangerousPosition() && v3.Distance(targetPosition) < 530) pList.Add(v3);
                 }
                 else
                 {
-                    if (!v3.IsDangerousPosition() && v3.Distance(targetPosition) < 550 - additionalDistance) pList.Add(v3);
+                    if (!v3.IsDangerousPosition() && v3.Distance(targetPosition) < 530 - additionalDistance) pList.Add(v3);
                 }
             }
             if (Heroes.Player.UnderTurret() || Heroes.Player.CountEnemiesInRange(800) == 1)

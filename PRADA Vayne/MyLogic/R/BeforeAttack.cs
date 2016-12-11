@@ -12,7 +12,7 @@ namespace PRADA_Vayne.MyLogic.R
         {
             if (args.Unit.IsMe || Program.Q.IsReady() || Program.ComboMenu.Item("QCombo").GetValue<bool>())
             {
-                if (MyWizard.UltActive() && ObjectManager.Player.Buffs.Any(b=>b.Name.ToLower() == "vaynetumblefade") && Program.EscapeMenu.Item("QUlt").GetValue<bool>() &&
+                if (ObjectManager.Player.HasBuff("vaynetumblefade") && Program.EscapeMenu.Item("QUlt").GetValue<bool>() &&
                     Heroes.EnemyHeroes.Any(h => h.IsMelee && h.Distance(Heroes.Player) < h.AttackRange + h.BoundingRadius))
                 {
                     args.Process = false;

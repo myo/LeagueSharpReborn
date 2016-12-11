@@ -21,34 +21,42 @@ namespace PRADA_Vayne.MyLogic.E
             {
                 if (args.SData.Name == "RenektonDice")
                 {
+                    Console.WriteLine("renekton gapclose");
                     Program.E.Cast(sender);
                 }
                 if ((sender.CharData.BaseSkinName == "Leona" || sender.CharData.BaseSkinName == "Graves") && args.Slot == SpellSlot.E)
                 {
+                    Console.WriteLine("Leona/Graves gapclose");
                     Program.E.Cast(sender);
                 }
                 if (sender.CharData.BaseSkinName == "Alistar" && args.Slot == SpellSlot.W)
                 {
+                    Console.WriteLine("Alistar Gapclose");
                     Program.E.Cast(sender);
                 }
                 if (sender.CharData.BaseSkinName == "Diana" && args.Slot == SpellSlot.R)
                 {
+                    Console.Write("diana gapclose");
                     Program.E.Cast(sender);
                 }
                 if (sender.CharData.BaseSkinName == "Shyvana" && args.Slot == SpellSlot.R)
                 {
+                    Console.WriteLine("shyv gapclose");
                     Program.E.Cast(sender);
                 }
                 if (sender.CharData.BaseSkinName == "Akali" && args.Slot == SpellSlot.R && args.SData.Cooldown > 2.5)
                 {
+                    Console.WriteLine("akali gapclsoe");
                     Program.E.Cast(sender);
                 }
                 if (args.SData.Name.ToLower().Contains("flash") && sender.IsMelee)
                 {
+                    Console.WriteLine("flash gapclose");
                     Program.E.Cast(sender);
                 }
                 if (sender.CharData.BaseSkinName.ToLower().Contains("zhao") && args.Slot == SpellSlot.E)
                 {
+                    Console.WriteLine("xin gc");
                     Program.E.Cast(sender);
                 }
             }
