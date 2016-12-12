@@ -17,59 +17,95 @@ namespace PRADA_Vayne.MyLogic.E
             {
                 return;
             }
+
+            var casterName = sender.CharData.BaseSkinName;
+            var slot = args.Slot;
+            var nameToLower = casterName.ToLower();
+            var spellName = args.SData.Name;
+            var spellNameToLower = spellName.ToLower();
+
             if ((args.Target != null && args.Target.IsMe) || ObjectManager.Player.Distance(args.End, true) < 350*350)
             {
-                if (args.SData.Name == "RenektonDice")
-                {
-                    Console.WriteLine("renekton gapclose");
-                    Program.E.Cast(sender);
-                }
-                if ((sender.CharData.BaseSkinName == "Leona" || sender.CharData.BaseSkinName == "Graves") && args.Slot == SpellSlot.E)
-                {
-                    Console.WriteLine("Leona/Graves gapclose");
-                    Program.E.Cast(sender);
-                }
-                if (sender.CharData.BaseSkinName == "Alistar" && args.Slot == SpellSlot.W)
-                {
-                    Console.WriteLine("Alistar Gapclose");
-                    Program.E.Cast(sender);
-                }
-                if (sender.CharData.BaseSkinName == "Diana" && args.Slot == SpellSlot.R)
-                {
-                    Console.Write("diana gapclose");
-                    Program.E.Cast(sender);
-                }
-                if (sender.CharData.BaseSkinName == "Shyvana" && args.Slot == SpellSlot.R)
-                {
-                    Console.WriteLine("shyv gapclose");
-                    Program.E.Cast(sender);
-                }
-                if (sender.CharData.BaseSkinName == "Akali" && args.Slot == SpellSlot.R && args.SData.Cooldown > 2.5)
-                {
-                    Console.WriteLine("akali gapclsoe");
-                    Program.E.Cast(sender);
-                }
-                if (args.SData.Name.ToLower().Contains("flash") && sender.IsMelee)
-                {
-                    Console.WriteLine("flash gapclose");
-                    Program.E.Cast(sender);
-                }
-                if (sender.CharData.BaseSkinName.ToLower().Contains("zhao") && args.Slot == SpellSlot.E)
-                {
-                    Console.WriteLine("xin gc");
-                    Program.E.Cast(sender);
-                }
-                if (sender.CharData.BaseSkinName == "Pantheon" && args.Slot == SpellSlot.W)
+                if (spellName == "RenektonDice")
                 {
                     Program.E.Cast(sender);
                 }
+                if ((casterName == "Leona" || casterName == "Graves") &&
+                    slot == SpellSlot.E)
+                {
+                    Program.E.Cast(sender);
+                }
+                if (casterName == "Alistar" && slot == SpellSlot.W)
+                {
+                    Program.E.Cast(sender);
+                }
+                if (casterName == "Diana" && slot == SpellSlot.R)
+                {
+                    Program.E.Cast(sender);
+                }
+                if (casterName == "Shyvana" && slot == SpellSlot.R)
+                {
+                    Program.E.Cast(sender);
+                }
+                if (casterName == "Akali" && slot == SpellSlot.R && args.SData.Cooldown > 2.5)
+                {
+                    Program.E.Cast(sender);
+                }
+                if (spellName.ToLower().Contains("flash") && sender.IsMelee)
+                {
+                    Program.E.Cast(sender);
+                }
+                if (nameToLower.Contains("zhao") || nameToLower.Contains("zix") && slot == SpellSlot.E)
+                {
+                    Program.E.Cast(sender);
+                }
+                if (casterName == "Pantheon" && slot == SpellSlot.W)
+                {
+                    Program.E.Cast(sender);
+                }
+                if ((casterName == "Aatrox" || casterName == "Fiora" ||
+                     casterName == "Fizz" || casterName == "Irelia" ||
+                     casterName == "Jax") && slot == SpellSlot.Q)
+                {
+                    Program.E.Cast(sender);
+                }
+                if ((casterName == "Ekko" || casterName == "Shen" ||
+                     casterName == "Talon" || casterName == "Tryndamere" ||
+                     casterName == "Zac") &&
+                    slot == SpellSlot.E)
+                {
+                    Program.E.Cast(sender);
+                }
+                if (spellNameToLower == "elisespiderqcast" || spellNameToLower == "jaycetotheskies" ||
+                    spellNameToLower == "riftwalk" || spellNameToLower == "rivenfeint" ||
+                    spellNameToLower == "sejuaniarcticassault")
+                {
+                    Program.E.Cast(sender);
+                }
+                if (
+                    casterName == "Yasuo" && args.Target != null && args.Target.IsMe && slot ==
+                    SpellSlot.E)
+                {
+                    Program.E.Cast(sender);
+                }
+            }
 
+            if (sender.Distance(ObjectManager.Player) < 550)
+            {
                 //INTERRUPTER
-                if (sender.CharData.BaseSkinName == "Katarina" && args.Slot == SpellSlot.R)
+                if ((casterName == "Katarina" || casterName == "Caitlyn" ||
+                     casterName == "Karthus" || casterName == "FiddleSticks" ||
+                     casterName == "Galio" || casterName == "Jhin" ||
+                     casterName == "Malzahar" || casterName == "MissFortune" ||
+                     casterName == "Nunu" || casterName == "Pantheon" ||
+                     casterName == "Sion" || casterName == "TwistedFate" ||
+                     casterName == "TahmKench" || casterName == "Urgot" ||
+                     casterName == "Velkoz" || casterName == "Warwick") &&
+                    slot == SpellSlot.R)
                 {
                     Program.E.Cast(sender);
                 }
-                if (sender.CharData.BaseSkinName == "MasterYi" && args.Slot == SpellSlot.W)
+                if (casterName == "MasterYi" && slot == SpellSlot.W)
                 {
                     for (var i = 40; i < 425; i += 125)
                     {
@@ -79,16 +115,24 @@ namespace PRADA_Vayne.MyLogic.E
                                     Heroes.Player.ServerPosition.To2D(),
                                     -i)
                                 .To3D());
-                        if (flags != null && flags.HasFlag(CollisionFlags.Wall) || flags.HasFlag(CollisionFlags.Building))
+                        if (flags != null && flags.HasFlag(CollisionFlags.Wall) ||
+                            flags.HasFlag(CollisionFlags.Building))
                         {
                             Program.E.Cast(sender);
                             return;
                         }
                     }
                 }
-                if (
-                    sender.CharData.BaseSkinName == "Yasuo" && args.Target != null && args.Target.IsMe && args.Slot ==
-                        SpellSlot.E)
+                if (casterName == "Vi" && slot == SpellSlot.Q)
+                {
+                    Program.E.Cast(sender);
+                }
+                if (casterName == "FiddleSticks" && slot == SpellSlot.W)
+                {
+                    Program.E.Cast(sender);
+                }
+                if (casterName == "Vladimir" && slot == SpellSlot.E &&
+                    sender.IsFacing(ObjectManager.Player))
                 {
                     Program.E.Cast(sender);
                 }
