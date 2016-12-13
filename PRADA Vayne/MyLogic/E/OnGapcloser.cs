@@ -39,6 +39,10 @@ namespace PRADA_Vayne.MyLogic.E
                 {
                     Program.E.Cast(sender);
                 }
+                if (casterName == "Camille" && slot == SpellSlot.E && spellName != "CamilleE")
+                {
+                    Program.E.Cast(sender);
+                }
                 if (casterName == "Diana" && slot == SpellSlot.R)
                 {
                     Program.E.Cast(sender);
