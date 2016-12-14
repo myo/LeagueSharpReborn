@@ -19,6 +19,7 @@ namespace PRADA_Vayne.MyUtils
 
         public static bool IsCondemnable(this Obj_AI_Hero hero)
         {
+            if (hero == null) return false;
             if (!hero.IsValidTarget(550f) || hero.HasBuffOfType(BuffType.SpellShield) ||
                 hero.HasBuffOfType(BuffType.SpellImmunity) || hero.IsDashing()) return false;
 
@@ -249,6 +250,7 @@ namespace PRADA_Vayne.MyUtils
 
         public static Vector3 GetTumblePos(this Obj_AI_Base target)
         {
+            if (target == null) return Vector3.Zero;
             //if the target is not a melee and he's alone he's not really a danger to us, proceed to 1v1 him :^ )
             if (!target.IsMelee && Heroes.Player.CountEnemiesInRange(800) == 1) return Game.CursorPos;
 
