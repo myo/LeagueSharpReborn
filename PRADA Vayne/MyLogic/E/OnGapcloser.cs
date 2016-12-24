@@ -55,7 +55,7 @@ namespace PRADA_Vayne.MyLogic.E
                 {
                     Program.E.Cast(sender);
                 }
-                if (spellName.ToLower().Contains("flash") && sender.IsMelee)
+                if (spellName.ToLower().Contains("flash") && sender.IsMelee && args.End.Distance(ObjectManager.Player.ServerPosition) < Orbwalking.GetRealAutoAttackRange(sender))
                 {
                     Program.E.Cast(sender);
                 }
