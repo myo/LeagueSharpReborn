@@ -115,6 +115,7 @@ namespace DeveloperSharp
                 if (!obj.IsValid<GameObject>()) return;
                 var X = Drawing.WorldToScreen(obj.Position).X;
                 var Y = Drawing.WorldToScreen(obj.Position).Y;
+                Console.WriteLine(obj.Name);
                 Drawing.DrawText(X, Y, Config.Item("color").GetValue<Color>(), (obj is Obj_AI_Hero) ? ((Obj_AI_Hero)obj).CharData.BaseSkinName : (obj is Obj_AI_Minion) ? (obj as Obj_AI_Minion).CharData.BaseSkinName : (obj is Obj_AI_Turret) ? (obj as Obj_AI_Turret).CharData.BaseSkinName : obj.Name);
                 Drawing.DrawText(X, Y + 12, Config.Item("color").GetValue<Color>(), obj.Type.ToString());
                 Drawing.DrawText(X, Y + 22, Config.Item("color").GetValue<Color>(), "NetworkID: " + obj.NetworkId);
