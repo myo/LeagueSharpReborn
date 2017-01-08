@@ -42,8 +42,8 @@ namespace PRADA_Vayne.MyLogic.E
                 {
                     foreach (var enemy in Heroes.EnemyHeroes.Where(e=>e.IsValidTarget(550)))
                     {
-                        if (enemy != null && enemy.IsCondemnable() && (!enemy.HasBuff("BlackShield") || !enemy.HasBuff("SivirE")
-                        || !enemy.HasBuff("NocturneShroudofDarkness")))
+                        if (enemy != null && enemy.IsCondemnable() && (!enemy.HasBuff("BlackShield") && !enemy.HasBuff("SivirE")
+                        && !enemy.HasBuff("NocturneShroudofDarkness")))
                         {
                             Program.E.Cast(enemy);
                         }
